@@ -6,15 +6,15 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>801</width>
-    <height>530</height>
+    <width>846</width>
+    <height>479</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Factory Planner</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <layout class="QHBoxLayout" name="horizontalLayout_2">
+   <layout class="QHBoxLayout" name="horizontalLayout_2" stretch="1,1,4">
     <item>
      <layout class="QVBoxLayout" name="verticalLayout">
       <item>
@@ -49,6 +49,12 @@
       </item>
       <item>
        <widget class="QListWidget" name="Items_List">
+        <property name="minimumSize">
+         <size>
+          <width>250</width>
+          <height>0</height>
+         </size>
+        </property>
         <property name="alternatingRowColors">
          <bool>true</bool>
         </property>
@@ -103,6 +109,12 @@
       </item>
       <item>
        <widget class="QTableWidget" name="Needs_List">
+        <property name="minimumSize">
+         <size>
+          <width>250</width>
+          <height>0</height>
+         </size>
+        </property>
         <property name="sortingEnabled">
          <bool>true</bool>
         </property>
@@ -180,6 +192,12 @@
       </item>
       <item>
        <widget class="QTreeWidget" name="Results">
+        <property name="minimumSize">
+         <size>
+          <width>250</width>
+          <height>0</height>
+         </size>
+        </property>
         <property name="styleSheet">
          <string notr="true">QTreeView::branch:has-siblings:!adjoins-item {
     border-image: url(img/vline.png) 0;

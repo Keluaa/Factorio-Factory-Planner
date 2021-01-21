@@ -12,7 +12,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(801, 530)
+        MainWindow.resize(846, 479)
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
         self.horizontalLayout_2 = QtWidgets.QHBoxLayout(self.centralwidget)
@@ -38,6 +38,7 @@ class Ui_MainWindow(object):
         self.Item_Search.setObjectName("Item_Search")
         self.verticalLayout.addWidget(self.Item_Search)
         self.Items_List = QtWidgets.QListWidget(self.centralwidget)
+        self.Items_List.setMinimumSize(QtCore.QSize(250, 0))
         self.Items_List.setAlternatingRowColors(True)
         self.Items_List.setObjectName("Items_List")
         self.verticalLayout.addWidget(self.Items_List)
@@ -61,6 +62,7 @@ class Ui_MainWindow(object):
         self.Needs_List_Label.setObjectName("Needs_List_Label")
         self.verticalLayout_2.addWidget(self.Needs_List_Label)
         self.Needs_List = QtWidgets.QTableWidget(self.centralwidget)
+        self.Needs_List.setMinimumSize(QtCore.QSize(250, 0))
         self.Needs_List.setColumnCount(2)
         self.Needs_List.setObjectName("Needs_List")
         self.Needs_List.setRowCount(0)
@@ -93,6 +95,7 @@ class Ui_MainWindow(object):
         self.Results_Label.setObjectName("Results_Label")
         self.verticalLayout_3.addWidget(self.Results_Label)
         self.Results = QtWidgets.QTreeWidget(self.centralwidget)
+        self.Results.setMinimumSize(QtCore.QSize(250, 0))
         self.Results.setStyleSheet("QTreeView::branch:has-siblings:!adjoins-item {\n"
 "    border-image: url(img/vline.png) 0;\n"
 "}\n"
@@ -132,6 +135,9 @@ class Ui_MainWindow(object):
         self.Compute_Button.setObjectName("Compute_Button")
         self.verticalLayout_3.addWidget(self.Compute_Button, 0, QtCore.Qt.AlignRight)
         self.horizontalLayout_2.addLayout(self.verticalLayout_3)
+        self.horizontalLayout_2.setStretch(0, 1)
+        self.horizontalLayout_2.setStretch(1, 1)
+        self.horizontalLayout_2.setStretch(2, 4)
         MainWindow.setCentralWidget(self.centralwidget)
         self.Items_List_Label.setBuddy(self.Items_List)
         self.Needs_List_Label.setBuddy(self.Needs_List)

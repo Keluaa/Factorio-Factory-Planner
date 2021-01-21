@@ -210,21 +210,21 @@ class FactoryGUI(QMainWindow, Ui_MainWindow):
         for used_recipe in Recipe.used_recipes:
             rounded_usage = round(used_recipe.usage, 5)
             n, d, _ = approx(rounded_usage)
-            total.addChild(QTreeWidgetItem([used_recipe.name + ": {} / {} ({})".format(n, d, rounded_usage)]))
+            total.addChild(QTreeWidgetItem([used_recipe.name + ": {} / {} ({:.2f})".format(n, d, rounded_usage)]))
 
         # items produced
         items_root = QTreeWidgetItem(["Items"])
         self.Results.addTopLevelItem(items_root)
 
         for item, productivity in Item.produced.items():
-            items_root.addChild(QTreeWidgetItem([item.name + ": " + str(productivity["rate"])]))
+            items_root.addChild(QTreeWidgetItem(["{}: {:.2f}".format(item.name, productivity["rate"])]))
 
         # byproducts
         if len(Item.byproducts) > 0:
             byproducts_root = QTreeWidgetItem(["Byproducts"])
             self.Results.addTopLevelItem(byproducts_root)
             for item, count in Item.byproducts.items():
-                byproducts_root.addChild(QTreeWidgetItem([item.name + ": " + str(count)]))
+                byproducts_root.addChild(QTreeWidgetItem(["{}: {:.2f}".format(item.name, count)]))
 
         # structure
         structure_root = QTreeWidgetItem(["Structure"])
@@ -234,7 +234,7 @@ class FactoryGUI(QMainWindow, Ui_MainWindow):
             child = QTreeWidgetItem([recipe_result["item"]])
             if "rate" in recipe_result:
                 n, d, _ = approx(recipe_result["count"])
-                child.addChild(QTreeWidgetItem(["Count: {} / {} ({}) - Rate: {}"
+                child.addChild(QTreeWidgetItem(["Count: {} / {} ({:.2f}) - Rate: {:.2f}"
                                                .format(n, d, recipe_result["count"], recipe_result["rate"])]))
 
             root.addChild(child)
@@ -261,16 +261,16 @@ class FactoryGUI(QMainWindow, Ui_MainWindow):
         machines_root.addChild(machines_list)
         for machine in Machine.machines:
             if machine.count > 0:
-                machine_entry = QTreeWidgetItem([machine.name + ": " + str(machine.count)])
+                machine_entry = QTreeWidgetItem(["{}: {:.2f}".format(machine.name, machine.count)])
                 machines_list.addChild(machine_entry)
 
-        machines_root.addChild(QTreeWidgetItem(["Energy: " + str(Machine.get_energy_consumption())]))
-        machines_root.addChild(QTreeWidgetItem(["Pollution: " + str(Machine.get_pollution_production())]))
+        machines_root.addChild(QTreeWidgetItem(["Energy: {:.2f}".format(Machine.get_energy_consumption())]))
+        machines_root.addChild(QTreeWidgetItem(["Pollution: {:.2f}".format(Machine.get_pollution_production())]))
 
         self.unmark_factory_results_as_invalid()
 
     def keyPressEvent(self, event: QKeyEvent):
-        if (self.Items_List.hasFocus() or self.Item_Count.hasFocus()) \
+        if (self.Items_List.hasFocus() or self.Item_Count.hasFocus() or self.Item_Add.hasFocus()) \
                 and event.key() == Qt.Key_Return:
             self.add_item()
         elif self.Needs_List.hasFocus() and event.key() == Qt.Key_Delete:
